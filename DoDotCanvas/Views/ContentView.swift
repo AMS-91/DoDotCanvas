@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var vm : CellViewModel
+    
     var body: some View {
         Text("Hello, world!")
             .padding()

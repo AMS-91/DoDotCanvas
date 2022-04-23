@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct DoDotCanvasApp: App {
+    
+    @StateObject var vm = CellViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(vm)
         }
     }
 }
