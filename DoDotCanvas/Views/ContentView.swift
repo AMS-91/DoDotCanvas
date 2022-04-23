@@ -13,13 +13,9 @@ struct ContentView: View {
     
     @State var currentPaintColor : Color = Color.paint.green
     
+    
     //MARK: Grid Item...
-    let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
- 
+    var columns : [GridItem] = Array(repeating: .init(.fixed(20)), count: 11)
     
     
     var body: some View {
@@ -30,17 +26,17 @@ struct ContentView: View {
             
             ScrollView {
                 
-                    LazyVGrid(columns: columns) {
+                    LazyVGrid(columns: columns, spacing: 0) {
                         ForEach($vm.cells) { $item in
                             UnitCellView(cellUnit: $item,
                                          currentPaintColor: currentPaintColor,
                                          screenSize: screenSize)
-                    }
+                    } 
                         
                 }
                 
             }
-            .padding(.horizontal, 40)
+            .padding(.horizontal, 15)
             
         }
     }

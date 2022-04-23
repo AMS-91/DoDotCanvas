@@ -29,20 +29,33 @@ struct UnitCellView: View {
                 cellUnit.paintedColor = currentPaintColor
             } label: {
                 Rectangle()
-                    .stroke()
+                    .stroke(lineWidth: 2.5)
+                    .foregroundColor(
+                        Color.theme.accent
+                    )
+                    .opacity(cellUnit.paintedBool ? 0.0 : 1.0 )
             }
    
         }
-        .frame(width: screenSize.height / 10, height: screenSize.width / 10)
-        .padding(20)
+        .frame(
+            width: min(screenSize.height / 18, screenSize.width / 18),
+            height: min(screenSize.height / 18, screenSize.width / 18)
+        )
+        .padding(.horizontal,0)
+        .padding(.vertical,3)
     }
     
 }
 
 struct UnitCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .environmentObject(dev.vm)
+        
+
+            ContentView()
+                .environmentObject(dev.vm)
+                .preferredColorScheme(.dark)
+        
+        
     }
 
 }
