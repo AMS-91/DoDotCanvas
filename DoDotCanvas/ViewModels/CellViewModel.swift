@@ -9,7 +9,18 @@ import Foundation
 
 class CellViewModel : ObservableObject {
     
-    @Published var vm : [CellModel] = []
+    @Published var cells : [CellModel] =
+    [
+        CellModel(),
+        CellModel(),
+        CellModel(),
+        CellModel(),
+        CellModel(),
+        CellModel(),
+        CellModel(),
+        CellModel(),
+        CellModel()
+    ]
     
     init(){
     print("init CellViewModel")

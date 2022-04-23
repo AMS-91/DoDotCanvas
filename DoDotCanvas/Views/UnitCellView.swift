@@ -9,20 +9,31 @@ import SwiftUI
 
 struct UnitCellView: View {
     
-    var paintedColor = Color.yellow
     
-    var proxy : CGSize
+    @Binding var cellUnit : CellModel
+    
+    var currentPaintColor : Color
+    
+    var screenSize : CGSize
     
     var body: some View {
         
         ZStack {
             
-            paintedColor
+            if cellUnit.paintedBool {
+                cellUnit.paintedColor
+            } else { Color.white }
             
-            Rectangle()
-                .stroke()
+            Button {
+                cellUnit.paintedBool.toggle()
+                cellUnit.paintedColor = currentPaintColor
+            } label: {
+                Rectangle()
+                    .stroke()
+            }
+   
         }
-        .frame(width: proxy.height, height: proxy.width)
+        .frame(width: screenSize.height / 10, height: screenSize.width / 10)
         .padding(20)
     }
     
@@ -30,13 +41,8 @@ struct UnitCellView: View {
 
 struct UnitCellView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            UnitCellView(paintedColor: .yellow, proxy: .init(width: 100, height: 100))
-                .previewLayout(.sizeThatFits)
-            
-            UnitCellView(paintedColor: .yellow, proxy: .init(width: 100, height: 100))
-                .previewLayout(.sizeThatFits)
-                .preferredColorScheme(.dark)
-        }
+        ContentView()
+            .environmentObject(dev.vm)
     }
+
 }

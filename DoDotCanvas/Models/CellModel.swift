@@ -12,12 +12,12 @@ import SwiftUI
 struct CellModel : Identifiable {
     
     let id : String
-    let paintedBool : Bool
-    let paintedColor : Color
+    var paintedBool : Bool
+    var paintedColor : Color
     
-    init(paintedColor: Color) {
+    init() {
         self.id = UUID().uuidString
-        self.paintedBool = true
+        self.paintedBool = false
         self.paintedColor = Color.clear
     }
 }
