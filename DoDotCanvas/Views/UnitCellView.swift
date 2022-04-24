@@ -12,7 +12,7 @@ struct UnitCellView: View {
     
     @Binding var cellUnit : CellModel
     
-    var currentPaintColor : Color
+    var currentPaintColor : String
     
     var screenSize : CGSize
     
@@ -21,7 +21,7 @@ struct UnitCellView: View {
         ZStack {
             
             if cellUnit.paintedBool {
-                cellUnit.paintedColor
+                Color(cellUnit.paintedColor)
             } else { Color.white }
             
             Button {
@@ -31,7 +31,7 @@ struct UnitCellView: View {
                 Rectangle()
                     .stroke(lineWidth: 2.5)
                     .foregroundColor(
-                        Color.theme.accent
+                        Color.theme.secondaryText
                     )
                     .opacity(cellUnit.paintedBool ? 0.0 : 1.0 )
             }

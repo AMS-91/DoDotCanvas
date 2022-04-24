@@ -12,7 +12,7 @@ struct ContentView: View {
     @EnvironmentObject var vm : CellViewModel
     @Environment(\.colorScheme) var colorScheme
     
-    @State var currentPaintColor : Color = Color.paint.green
+    @State var currentPaintColor : String = "GreenColor"
     
     
     //MARK: Grid Item...
@@ -26,6 +26,22 @@ struct ContentView: View {
             let screenSize = proxy.size
             
             ScrollView {
+                
+                Section {
+                    HStack(alignment: .center, spacing: 30) {
+                        newButton
+                        getSavedButton
+                        saveButton
+                    }
+                    .padding(.bottom, 20)
+                    
+                } header: {
+                    Text("⚙️ Buttons ⚙️")
+                        .font(.title)
+                        .foregroundColor(
+                            Color.theme.accent
+                        ).padding(.top, 15)
+                }
                     
                 Section {
                     LazyVGrid(columns: columns, spacing: 0) {
@@ -35,14 +51,13 @@ struct ContentView: View {
                                          screenSize: screenSize)
                         }
                     }
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 30)
                 } header: {
                     Text("🖌 Canvas 🖌")
                         .font(.largeTitle)
                         .foregroundColor(
                             Color.theme.accent
                         )
-                        .padding(.top, 30)
                 }
 
                 
@@ -52,22 +67,23 @@ struct ContentView: View {
                         
                         HStack(alignment: .center, spacing: 30) {
                             
-                            paletteButton(Color.paint.red)
-                            paletteButton(Color.paint.orange)
-                            paletteButton(Color.paint.yellow)
-                            paletteButton(Color.paint.green)
+                            paletteButton("RedColor")
+                            paletteButton("OrangeColor")
+                            paletteButton("YellowColor")
+                            paletteButton("GreenColor")
                             
                         }
                         
                         HStack(alignment: .center, spacing: 30) {
                         
-                            paletteButton(Color.paint.blue)
-                            paletteButton(Color.paint.navy)
-                            paletteButton(Color.paint.purple)
-                            paletteButton(Color.black)
+                            paletteButton("BlueColor")
+                            paletteButton("NavyColor")
+                            paletteButton("PurpleColor")
+                            paletteButton("BlackColor")
                             
                         }
                     }
+                    
                     
                 } header: {
                     Text("🎨 Palette 🎨")
@@ -76,9 +92,10 @@ struct ContentView: View {
                             Color.theme.accent
                         )
                 }
-
-
-                    
+                
+                
+                
+   
                 
             }
             .padding(.horizontal, 15)
@@ -95,14 +112,18 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 extension ContentView {
+    
     //MARK: Palette
-    private func paletteButton(_ color: Color) -> some View {
+    
+    
+    private func paletteButton(_ color: String) -> some View {
         return Button {
             currentPaintColor = color
         } label: {
+            
             ZStack {
                 Circle()
-                .foregroundColor(color)
+                .foregroundColor(Color(color))
                 .frame(width: 30, height: 30)
                 
                 if colorScheme == .dark {
@@ -114,6 +135,42 @@ extension ContentView {
             }
                     
         }
+    }
+    
+    private var saveButton : some View {
+        Button {
+            vm.saveCells()
+        } label: {
+            Text("Save")
+                .foregroundColor(.white)
+                .frame(width: 100, height: 50)
+                .background(Color.theme.button)
+        }
+
+    }
+    
+    private var newButton : some View {
+        Button {
+            vm.createNewCells()
+        } label: {
+            Text("Renew")
+                .foregroundColor(.white)
+                .frame(width: 100, height: 50)
+                .background(Color.theme.button)
+        }
+
+    }
+    
+    private var getSavedButton : some View {
+        Button {
+            vm.getCells()
+        } label: {
+            Text("Get Saved")
+                .foregroundColor(.white)
+                .frame(width: 100, height: 50)
+                .background(Color.theme.button)
+        }
+
     }
     
 }

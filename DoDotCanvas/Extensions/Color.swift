@@ -37,5 +37,5 @@ struct ColorPaint {
     let blue = Color("BlueColor")
     let navy = Color("NavyColor")
     let purple = Color("PurpleColor")
-    
+
 }

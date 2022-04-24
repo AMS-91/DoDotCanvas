@@ -9,15 +9,15 @@ import Foundation
 import SwiftUI
 
 
-struct CellModel : Identifiable {
+struct CellModel : Identifiable, Codable {
     
     let id : String
     var paintedBool : Bool
-    var paintedColor : Color
+    var paintedColor : String
     
     init() {
         self.id = UUID().uuidString
         self.paintedBool = false
-        self.paintedColor = Color.clear
+        self.paintedColor = "ClearColor"
     }
 }
